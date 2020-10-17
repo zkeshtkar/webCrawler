@@ -21,7 +21,6 @@ class SpiderSpider(scrapy.Spider):
         count = 1
         while count <= len(all_rows):
             webCrawler = WebcrawlerItem()
-
             webCrawler['symbol'] = response.xpath("//tbody/tr[{}]/td[1]/div/div/a[@class=\'symbol\']/text()".format(count)).extract()
             webCrawler['market'] = response.xpath("//tbody/tr[{}]/td[2]/text()".format(count)).extract()
             webCrawler['dateOfTransaction'] = response.xpath("//tbody/tr[{}]/td[3]/text()".format(count)).extract()
@@ -40,5 +39,6 @@ class SpiderSpider(scrapy.Spider):
             webCrawler['demandPrice'] = response.xpath("//tbody/tr[{}]/td[13]/span/text()".format(count)).extract()
             webCrawler['supplyPrice'] = response.xpath("//tbody/tr[{}]/td[14]/span/text()".format(count)).extract()
             webCrawler['supplyCount'] = response.xpath("//tbody/tr[{}]/td[15]/span/text()".format(count)).extract()
+            count+=1
 
             yield
